@@ -1,0 +1,19 @@
+/* ArtistKit Theme: Clair / Épuré — Pop · Folk · Indie */
+:root {
+  --ak-bg:     #fafafa;
+  --ak-bg2:    #f2f2f5;
+  --ak-bg3:    #ffffff;
+  --ak-border: rgba(0,0,0,0.08);
+  --ak-text:   #111118;
+  --ak-muted:  #5a5870;
+  --ak-muted2: #9995aa;
+}
+body.ak-theme-light-clean .ak-nav {
+  background: rgba(250,250,250,0.92);
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+body.ak-theme-light-clean .ak-hero::before {
+  background: radial-gradient(ellipse at 60% 40%, rgba(139,92,246,0.06) 0%, transparent 65%);
+}
+body.ak-theme-light-clean .ak-stream-btn { background: #fff; }
+body.ak-theme-light-clean .ak-footer { background: #f2f2f5; }

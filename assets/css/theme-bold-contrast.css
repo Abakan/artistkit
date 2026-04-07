@@ -1,0 +1,15 @@
+/* ArtistKit Theme: Bold / Contrasté — Rock · Metal · Punk */
+:root {
+  --ak-bg:     #0d0000;
+  --ak-bg2:    #140000;
+  --ak-bg3:    #1c0505;
+  --ak-border: rgba(239,68,68,0.12);
+  --ak-text:   #fff5f5;
+  --ak-muted:  #c09090;
+  --ak-muted2: #804040;
+}
+body.ak-theme-bold-contrast .ak-hero::before {
+  background: radial-gradient(ellipse at 60% 40%, rgba(239,68,68,0.12) 0%, transparent 65%);
+}
+body.ak-theme-bold-contrast .ak-artist-name { letter-spacing: -0.04em; }
+body.ak-theme-bold-contrast .ak-nav-epk-badge { border-color: rgba(239,68,68,0.3); color: #ef4444; background: rgba(239,68,68,0.1); }

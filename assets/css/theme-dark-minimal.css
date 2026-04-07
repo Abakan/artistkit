@@ -1,0 +1,10 @@
+/* ArtistKit Theme: Noir / Minimal — Rap · Électro · Ambient */
+:root {
+  --ak-bg:     #0a0a0f;
+  --ak-bg2:    #111118;
+  --ak-bg3:    #18181f;
+  --ak-border: rgba(255,255,255,0.07);
+  --ak-text:   #f1f0f5;
+  --ak-muted:  #8b8a99;
+  --ak-muted2: #5a5870;
+}
