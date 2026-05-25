@@ -9,7 +9,7 @@ $platforms = [
     'ak_instagram_url'   => [ 'label' => 'Instagram',    'icon' => '📸', 'placeholder' => 'https://instagram.com/...' ],
     'ak_tiktok_url'      => [ 'label' => 'TikTok',       'icon' => '🎬', 'placeholder' => 'https://tiktok.com/@...' ],
     'ak_facebook_url'    => [ 'label' => 'Facebook',     'icon' => '📘', 'placeholder' => 'https://facebook.com/...' ],
-    'ak_website_url'     => [ 'label' => 'Site web',     'icon' => '🌐', 'placeholder' => 'https://monsite.com' ],
+    'ak_website_url'     => [ 'label' => __( 'Website', 'artistkit' ),     'icon' => '🌐', 'placeholder' => 'https://yoursite.com' ],
 ];
 ?>
 <div class="ak-links-grid">

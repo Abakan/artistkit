@@ -10,14 +10,13 @@ class AK_Post_Types {
     }
 
     public static function register() {
-        // ── Artist EPK ──────────────────────────────────────────────────────
         register_post_type( 'ak_artist_epk', [
             'labels' => [
-                'name'               => __( 'EPK Artiste', 'artistkit' ),
-                'singular_name'      => __( 'EPK Artiste', 'artistkit' ),
-                'add_new'            => __( 'Créer mon EPK', 'artistkit' ),
-                'add_new_item'       => __( 'Créer mon EPK Artiste', 'artistkit' ),
-                'edit_item'          => __( 'Modifier mon EPK Artiste', 'artistkit' ),
+                'name'               => __( 'Artist EPK', 'artistkit' ),
+                'singular_name'      => __( 'Artist EPK', 'artistkit' ),
+                'add_new'            => __( 'Create my EPK', 'artistkit' ),
+                'add_new_item'       => __( 'Create my Artist EPK', 'artistkit' ),
+                'edit_item'          => __( 'Edit my Artist EPK', 'artistkit' ),
                 'menu_name'          => __( 'ArtistKit', 'artistkit' ),
             ],
             'public'              => false,
@@ -30,32 +29,20 @@ class AK_Post_Types {
             'map_meta_cap'        => true,
         ] );
 
-        // ── Release EPK ─────────────────────────────────────────────────────
-        register_post_type( 'ak_release_epk', [
-            'labels' => [
-                'name'               => __( 'EPK Release', 'artistkit' ),
-                'singular_name'      => __( 'EPK Release', 'artistkit' ),
-                'add_new'            => __( 'Nouvelle Release', 'artistkit' ),
-                'add_new_item'       => __( 'Nouvelle EPK Release', 'artistkit' ),
-                'edit_item'          => __( 'Modifier EPK Release', 'artistkit' ),
-                'menu_name'          => __( 'Releases', 'artistkit' ),
-            ],
-            'public'              => false,
-            'show_ui'             => true,
-            'show_in_menu'        => false,
-            'supports'            => [ 'title', 'thumbnail' ],
-            'has_archive'         => false,
-            'rewrite'             => false,
-            'capability_type'     => 'post',
-            'map_meta_cap'        => true,
-        ] );
+        /**
+         * Extension hook — Pro registers ak_release_epk CPT here.
+         */
+        do_action( 'artistkit_register_post_types' );
     }
 
     public static function register_rewrite_rules() {
         // monsite.com/epk → Artist EPK
         add_rewrite_rule( '^epk/?$', 'index.php?ak_page=artist', 'top' );
-        // monsite.com/epk/titre-du-single → Release EPK
-        add_rewrite_rule( '^epk/([^/]+)/?$', 'index.php?ak_page=release&ak_slug=$matches[1]', 'top' );
+
+        /**
+         * Extension hook — Pro registers /epk/{slug} rewrite for Release EPKs.
+         */
+        do_action( 'artistkit_register_rewrite_rules' );
     }
 
     public static function add_query_vars( $vars ) {
