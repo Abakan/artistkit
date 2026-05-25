@@ -31,10 +31,26 @@
 ### Build artefacts
 - [x] Tag git `v2.0.0` créé sur le merge commit `3819bae` (branche `main`)
 - [x] Tag git `v1.3.7-pre-refactor` créé comme backup primaire (poussé sur origin)
-- [x] ZIP final : `/tmp/artistkit-2.0.0.zip` (40 KB, 33 fichiers)
-  - MD5 : `88d352529e8b7c28c74581315f4393bc`
+- [x] ZIP final : `/tmp/artistkit-2.0.0.zip` (40017 bytes, 33 fichiers)
+  - MD5 actuel : `ce5552eee727ecaecc23e7f3639cd29c` (peut différer après
+    rebuild — les MD5 ZIP ne sont pas déterministes à cause des timestamps
+    embarqués ; comparer le contenu via `unzip -l` plutôt que le MD5)
   - Structure : `artistkit/` à la racine (folder name = slug)
-  - Pas de `.git`, `.DS_Store`, `REFACTOR-INVENTORY.md`, ni dirs vides
+  - Pas de `.git`, `.DS_Store`, `REFACTOR-INVENTORY.md`, `SUBMISSION-CHECKLIST.md`, ni dirs vides
+
+### Commande de rebuild reproductible
+```bash
+cd /Users/davidabakan/Desktop/promoTracker-saas
+rm -rf /tmp/wporg-build /tmp/artistkit-2.0.0.zip
+mkdir -p /tmp/wporg-build
+cp -r github-artistkit /tmp/wporg-build/artistkit
+cd /tmp/wporg-build/artistkit
+rm -rf .git REFACTOR-INVENTORY.md SUBMISSION-CHECKLIST.md
+find . -name ".DS_Store" -delete
+find . -type d -empty -delete
+cd /tmp/wporg-build
+zip -rq /tmp/artistkit-2.0.0.zip artistkit/
+```
 
 ---
 
