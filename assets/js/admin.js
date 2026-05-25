@@ -22,8 +22,6 @@
     });
 
     // ── Media uploader ─────────────────────────────────────────────────────
-    // On partage un seul frame wp.media mais on met à jour currentTarget
-    // à chaque clic pour que l'image atterrisse toujours dans le bon champ.
     var mediaFrame;
     var currentTarget;
 
@@ -61,23 +59,14 @@
       $(this).closest('.ak-quote-row').remove();
     });
 
-    // ── Password field toggle ──────────────────────────────────────────────
-    $('#ak_password_protected_cb').on('change', function() {
-      if ($(this).is(':checked')) {
-        $('#ak_password_field').show();
-      } else {
-        $('#ak_password_field').hide();
-      }
-    });
-
     // ── Logo uploader ──────────────────────────────────────────────────────
     var logoFrame;
     $('#ak-logo-upload-btn').on('click', function(e) {
       e.preventDefault();
       if (logoFrame) { logoFrame.open(); return; }
       logoFrame = wp.media({
-        title: 'Choisir ton logo',
-        button: { text: 'Utiliser ce logo' },
+        title: AK.strings.selectImage,
+        button: { text: AK.strings.useImage },
         multiple: false,
         library: { type: 'image' },
       });
@@ -86,25 +75,24 @@
         $('#ak-logo-url').val(attachment.url);
         $('#ak-logo-img, #ak-logo-preview img').attr('src', attachment.url);
         $('#ak-logo-preview').show();
-        $('#ak-logo-upload-btn').text('🔄 Changer le logo');
       });
       logoFrame.open();
     });
     $('#ak-logo-remove').on('click', function() {
       $('#ak-logo-url').val('');
       $('#ak-logo-preview').hide();
-      $('#ak-logo-upload-btn').text('⬆ Uploader mon logo');
     });
 
     // ── EPK link: copy to clipboard ────────────────────────────────────────
     $(document).on('click', '.ak-copy-link', function(e) {
       e.preventDefault();
       var link = $(this).data('url');
+      var $btn = $(this);
       navigator.clipboard.writeText(link).then(function() {
-        var $btn = $(this);
-        $btn.text('Copié !');
-        setTimeout(function() { $btn.text('Copier'); }, 2000);
-      }.bind(this));
+        var original = $btn.text();
+        $btn.text('✓');
+        setTimeout(function() { $btn.text(original); }, 2000);
+      });
     });
 
   });

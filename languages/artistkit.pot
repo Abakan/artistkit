@@ -1,0 +1,352 @@
+# Copyright (C) 2026 PromoTracker
+# This file is distributed under the GPLv2 or later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: ArtistKit 2.0.0\n"
+"Report-Msgid-Bugs-To: https://promotracker.fr/artistkit\n"
+"POT-Creation-Date: 2026-05-25 18:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: ArtistKit refactor script\n"
+"X-Domain: artistkit\n"
+
+msgid "(2-3 lines — for bookers)"
+msgstr ""
+
+msgid "(optional)"
+msgstr ""
+
+msgid "(press & labels)"
+msgstr ""
+
+msgid "5 Templates + 8 Font Pairs"
+msgstr ""
+
+msgid "5 audio players in a grid layout — perfect for featuring multiple tracks."
+msgstr ""
+
+msgid "A dedicated press kit page for each single, EP or album."
+msgstr ""
+
+msgid "Accent color"
+msgstr ""
+
+msgid "Active since"
+msgstr ""
+
+msgid "Add a quote"
+msgstr ""
+
+msgid "Add the press quotes, blogs and media that have covered you."
+msgstr ""
+
+msgid "Allow MP3 download"
+msgstr ""
+
+msgid "Artist EPK"
+msgstr ""
+
+msgid "Artist EPK not found."
+msgstr ""
+
+msgid "ArtistKit"
+msgstr ""
+
+msgid "ArtistKit Settings"
+msgstr ""
+
+msgid "ArtistKit generates the embed automatically from the URL."
+msgstr ""
+
+msgid "BPM, key, duration, radio edit and ISRC fields for radio pitches."
+msgstr ""
+
+msgid "Biography"
+msgstr ""
+
+msgid "Booking"
+msgstr ""
+
+msgid "Booking email"
+msgstr ""
+
+msgid "Bundle your HD photos in a ZIP uploaded via the WordPress media library."
+msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "City / Country"
+msgstr ""
+
+msgid "Collapse ↑"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Create my Artist EPK"
+msgstr ""
+
+msgid "Create my EPK"
+msgstr ""
+
+msgid "Dark / Minimal"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Don't forget to publish this post for the EPK to be accessible."
+msgstr ""
+
+msgid "Download MP3"
+msgstr ""
+
+msgid "EPK Design"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Edit my Artist EPK"
+msgstr ""
+
+msgid "Ex: Electronic · House · Afrobeats"
+msgstr ""
+
+msgid "Ex: Excerpt · Demo · Sketch"
+msgstr ""
+
+msgid "Export your EPK as a polished PDF, ready to send to bookers."
+msgstr ""
+
+msgid "Font pair"
+msgstr ""
+
+msgid "Formatted briefs for journalists with story angles."
+msgstr ""
+
+msgid "Full bio for press kits..."
+msgstr ""
+
+msgid "Get ArtistKit Pro"
+msgstr ""
+
+msgid "HD Photos (.zip)"
+msgstr ""
+
+msgid "Inter — Modern & readable"
+msgstr ""
+
+msgid "Listen"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Long bio"
+msgstr ""
+
+msgid "MP3 Player"
+msgstr ""
+
+msgid "MP3 file (URL)"
+msgstr ""
+
+msgid "Management"
+msgstr ""
+
+msgid "Management email"
+msgstr ""
+
+msgid "Match your visual identity with curated design presets."
+msgstr ""
+
+msgid "Monthly Spotify listeners"
+msgstr ""
+
+msgid "Music genre"
+msgstr ""
+
+msgid "My Artist EPK"
+msgstr ""
+
+msgid "Not created yet"
+msgstr ""
+
+msgid "PDF Export"
+msgstr ""
+
+msgid "PNG, SVG or JPG — transparent background recommended."
+msgstr ""
+
+msgid "Paris-based producer and DJ, X crafts an electronic universe..."
+msgstr ""
+
+msgid "Password Protection"
+msgstr ""
+
+msgid "Permission denied."
+msgstr ""
+
+msgid "Platform"
+msgstr ""
+
+msgid "Player label"
+msgstr ""
+
+msgid "Press / PR"
+msgstr ""
+
+msgid "Press / PR email"
+msgstr ""
+
+msgid "Press Assets"
+msgstr ""
+
+msgid "Press Kit"
+msgstr ""
+
+msgid "Press Talking Points"
+msgstr ""
+
+msgid "Press photos ZIP (URL)"
+msgstr ""
+
+msgid "Preview →"
+msgstr ""
+
+msgid "Public link to your EPK:"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Radio Info"
+msgstr ""
+
+msgid "Rap · Electronic · Ambient"
+msgstr ""
+
+msgid "Read full bio ↓"
+msgstr ""
+
+msgid "Real-time Analytics"
+msgstr ""
+
+msgid "Release EPK per song"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Secure Stripe payment · License key delivered by email · Free plugin stays active without renewal"
+msgstr ""
+
+msgid "Select an image"
+msgstr ""
+
+msgid "Send confidential EPKs before public release with password access."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Settings & design"
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Short bio"
+msgstr ""
+
+msgid "Source / Media"
+msgstr ""
+
+msgid "Streaming embed"
+msgstr ""
+
+msgid "Technical rider"
+msgstr ""
+
+msgid "Technical rider (file URL)"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "They talk about us"
+msgstr ""
+
+msgid "Total streams"
+msgstr ""
+
+msgid "Track Patchwork"
+msgstr ""
+
+msgid "Track views per EPK with bot-filtered insights and traffic sources."
+msgstr ""
+
+msgid "URL to embed"
+msgstr ""
+
+msgid "Unlock advanced features designed for active musicians and labels."
+msgstr ""
+
+msgid "Update manually"
+msgstr ""
+
+msgid "Upgrade to ArtistKit Pro"
+msgstr ""
+
+msgid "Upgrade to Pro"
+msgstr ""
+
+msgid "Use this image"
+msgstr ""
+
+msgid "View EPK"
+msgstr ""
+
+msgid "View ↗"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Your main press kit — always up to date."
+msgstr ""
+
+msgid "— No embed —"
+msgstr ""
+
+msgid "⬆ Upload logo"
+msgstr ""
+
+msgid "🎤 Artist Identity"
+msgstr ""
+
+msgid "🎵 Streaming Links"
+msgstr ""
+
+msgid "📦 Assets & Contact"
+msgstr ""
+
+msgid "📰 Press & Quotes"
+msgstr ""
+
+msgid "🔄 Change"
+msgstr ""
+
+msgid "🔊 Audio"
+msgstr ""
+
+msgid "🔗 EPK Link"
+msgstr ""
+

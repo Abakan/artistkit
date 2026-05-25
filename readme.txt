@@ -1,76 +1,107 @@
-=== ArtistKit – EPK Builder for Musicians ===
-Contributors: promotracker
-Tags: epk, electronic press kit, music, artist, portfolio
+=== ArtistKit ===
+Contributors: hexagonwebfr
+Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
-Tested up to: 6.7
-Stable tag: 1.3.7
+Tested up to: 6.9
 Requires PHP: 7.4
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Create a stunning Electronic Press Kit (EPK) for your music in minutes. Showcase your bio, releases, videos, press quotes, social links, and more — all from your WordPress dashboard.
+Free Electronic Press Kit (EPK) builder for musicians. Showcase your music and press materials directly on your WordPress site.
 
 == Description ==
 
-ArtistKit is the easiest way for musicians, bands, and labels to build a professional Electronic Press Kit directly inside WordPress.
+Create a professional EPK directly from your WordPress admin. No subscriptions, no external platforms — your data stays on your domain.
 
-**Features (Free):**
+ArtistKit gives independent musicians, bands and labels everything they need to pitch bookers, journalists, festivals and curators in a professional way.
 
-* Beautiful, responsive EPK page for any artist
-* Artist profile: bio, photo, genre, social links
-* Release showcase with cover art, tracklist, and streaming links
-* Embedded music player and video section
-* Press quotes and achievements
-* Customisable colours and fonts
-* Shortcode support: `[artistkit]` or `[artistkit id="123"]`
+**Free version features:**
+
+* Artist EPK page (bio, photo, stats, social links)
+* Streaming platforms integration (Spotify, Apple Music, Deezer, YouTube Music, SoundCloud, Bandcamp)
+* Embedded music player (Spotify, SoundCloud)
+* MP3 player with optional download
+* Press quotes section
+* Press assets ZIP download (photos, rider)
+* Custom accent color
 * SEO-friendly markup
+* Responsive mobile design
+* Dedicated URL on your domain (`yoursite.com/epk`)
 
-**Pro Features (paid upgrade):**
+**Use cases:**
 
-* Unlimited artist profiles (perfect for labels & managers)
-* Per-release dedicated pages with full tracklist, credits, and streaming links
-* Priority support
+* Solo artists looking for a professional press kit page
+* Bands needing to share materials with bookers and festivals
+* Labels managing artist profiles
+* Indie musicians wanting to look professional without paying monthly fees
 
-Learn more and upgrade at [https://promotracker.fr/artistkit](https://promotracker.fr/artistkit)
+**Premium Features (ArtistKit Pro):**
+
+The free version covers essential EPK needs. For active musicians and labels, [ArtistKit Pro](https://promotracker.fr/artistkit) (sold separately) adds:
+
+1. **EPK Release per song** — Dedicated EPK page for each single, EP or album
+2. **Track Patchwork** — 5 audio players in a grid layout
+3. **Extended embeds** — 380px Spotify/SoundCloud with visible tracklist
+4. **Real-time Analytics** — Views per EPK, time-period breakdown, traffic sources
+5. **PDF Export** — One-click polished PDF generation
+6. **Password Protection** — Send confidential EPKs before public release
+7. **Press Talking Points** — Formatted briefs for journalists
+8. **Radio Info** — BPM, key, ISRC fields
+9. **5 Templates** — Match your visual identity
+10. **8 Font Pairs** — Curated typography combinations
+
+ArtistKit Pro is an add-on plugin installed alongside ArtistKit. Visit [promotracker.fr/artistkit](https://promotracker.fr/artistkit) to learn more.
 
 == Installation ==
 
-1. Upload the `artistkit` folder to `/wp-content/plugins/`.
-2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **ArtistKit → Artists** and create your first artist profile.
-4. Add releases, press quotes, and media.
-5. Insert the EPK on any page using the `[artistkit]` shortcode.
+1. Upload the plugin files to `/wp-content/plugins/artistkit`, or install through the WordPress plugins screen.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Go to **ArtistKit → Artist EPK** and create your artist profile.
+4. Visit `yoursite.com/epk` to view your published EPK.
 
 == Frequently Asked Questions ==
 
-= Do I need any coding knowledge? =
+= Does ArtistKit work with my WordPress theme? =
 
-Not at all. Everything is managed from a user-friendly dashboard inside WordPress.
+Yes. ArtistKit generates EPKs in a standalone template that doesn't depend on your theme. It works with any properly coded WordPress theme.
 
-= Can I have multiple artists? =
+= Can I customize the colors? =
 
-The free version supports one artist profile. Upgrade to **ArtistKit Pro** for unlimited artists — ideal for labels and managers.
+Yes. The free version supports a custom accent color. The Pro version offers 5 templates and 8 font pairs.
 
-= What streaming platforms are supported? =
+= Do I need any external service or account? =
 
-Spotify, Apple Music, Deezer, YouTube Music, SoundCloud, Bandcamp, Tidal, and Amazon Music.
+No. ArtistKit works entirely on your WordPress site. No external accounts, no API keys, no monthly subscription.
 
-= Is the EPK mobile-friendly? =
+= Where is my data stored? =
 
-Yes. Every EPK page is fully responsive and looks great on phones, tablets, and desktops.
+All your data stays in your WordPress database. Your EPK is hosted on your domain.
 
-= Can I customise the look and feel? =
+= Is there a Pro version? =
 
-Yes — you can change the primary colour, fonts, and layout options from the plugin settings.
+Yes. ArtistKit Pro is a separate add-on plugin with advanced features for active musicians. Available at [promotracker.fr/artistkit](https://promotracker.fr/artistkit).
+
+= How do I uninstall the plugin? =
+
+Deactivate from the WordPress Plugins screen, then click "Delete". All artist EPK data will be removed.
 
 == Screenshots ==
 
-1. Artist EPK page — clean, modern layout
-2. Release page with cover art and streaming links
-3. Plugin dashboard — artist editor
-4. Settings panel — colours and fonts
+1. The Artist EPK page on the frontend
+2. The plugin admin dashboard
+3. Editing an artist profile
+4. Mobile view of an EPK page
 
 == Changelog ==
+
+= 2.0.0 =
+* Major refactor: Pro features moved to a separate add-on plugin (ArtistKit Pro)
+* Cleaner free plugin focused on essential EPK creation
+* New extensibility hooks for the Pro add-on
+* Strings anglicised — translation now via .po catalog
+* New "Upgrade to Pro" admin page
+* WordPress.org compliant readme
 
 = 1.3.7 =
 * Fix: font rendering issue in EPK templates
@@ -85,5 +116,5 @@ Yes — you can change the primary colour, fonts, and layout options from the pl
 
 == Upgrade Notice ==
 
-= 1.3.7 =
-Fixes a font rendering bug that could display Times New Roman instead of your chosen font. Update recommended.
+= 2.0.0 =
+Major version with architectural changes. Pro features (Release EPKs, Analytics, PDF Export, etc.) are now in a separate ArtistKit Pro add-on plugin available at promotracker.fr/artistkit. Existing Pro users: download the new ArtistKit Pro plugin from your account.

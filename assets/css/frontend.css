@@ -1,32 +1,26 @@
-/* ─── ArtistKit Print / PDF Styles ────────────────────────────────────────── */
+/* ─── ArtistKit Print Styles ───────────────────────────────────────────────── */
 @media print {
-  print-color-adjust: exact;
-  -webkit-print-color-adjust: exact;
-
   @page { size: A4; margin: 14mm 14mm 18mm; }
 
-  /* ── Base ── */
+  /* Base */
   * { box-shadow: none !important; }
   body.ak-epk { background: #fff !important; color: #1a1a1a !important; font-size: 10.5pt; line-height: 1.6; margin: 0; padding: 0; }
 
-  /* ── Annuler les animations JS — CRITIQUE : sans ça pages blanches + bio coupée ── */
+  /* Disable JS animations — CRITICAL: prevents blank pages and clipped bio */
   .ak-section { opacity: 1 !important; transform: none !important; transition: none !important; }
   .ak-bio-long { max-height: none !important; overflow: visible !important; height: auto !important; }
 
-  /* ── Masquer les éléments interactifs ── */
+  /* Hide interactive elements */
   .ak-nav,
   .ak-footer,
   .ak-bio-toggle,
   .ak-hero-socials,
-  .ak-section-audio,
-  .ak-section-media,
-  .ak-release-actions,
-  .ak-release-card-overlay { display: none !important; }
+  .ak-section-audio { display: none !important; }
 
-  /* ── Supprimer URLs auto-générées après les liens ── */
+  /* Disable browser auto URL after links */
   a[href]::after, a[href]::before { content: none !important; }
 
-  /* ── Hero artiste ── */
+  /* Hero */
   .ak-hero {
     background: #fff !important;
     padding: 20pt 26pt 14pt !important;
@@ -36,7 +30,6 @@
     -webkit-print-color-adjust: exact !important;
   }
   .ak-hero::before { display: none !important; }
-  /* grid-template-areas pour forcer image gauche / contenu droite quelle que soit l'ordre DOM */
   .ak-hero-inner {
     display: grid !important;
     grid-template-areas: "image content" !important;
@@ -51,17 +44,17 @@
   .ak-bio-short { font-size: 9.5pt !important; color: #444 !important; line-height: 1.55 !important; }
   .ak-hero-image img { width: 140pt !important; height: 140pt !important; object-fit: cover !important; border-radius: 6pt !important; border: 1pt solid #ede9fe !important; display: block !important; }
 
-  /* ── Liens streaming : affichés comme tags compacts cliquables ── */
+  /* Streaming links as compact pills */
   .ak-streaming-links { display: flex !important; flex-wrap: wrap !important; gap: 4pt !important; margin-top: 8pt !important; }
   .ak-stream-btn { font-size: 7.5pt !important; padding: 2pt 7pt !important; border: 0.5pt solid #8b5cf6 !important; border-radius: 3pt !important; color: #4c1d95 !important; text-decoration: none !important; background: #f5f3ff !important; }
 
-  /* ── Stats ── */
+  /* Stats */
   .ak-stats { display: flex !important; gap: 16pt !important; margin: 10pt 0 !important; flex-wrap: nowrap !important; }
   .ak-stat { background: #f5f3ff !important; border-radius: 4pt !important; padding: 5pt 10pt !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
   .ak-stat-val { font-size: 13pt !important; color: #7c3aed !important; font-weight: 800 !important; display: block !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
   .ak-stat-label { font-size: 7.5pt !important; color: #6b7280 !important; }
 
-  /* ── Sections ── */
+  /* Sections */
   .ak-section { background: #fff !important; padding: 12pt 26pt !important; border: none !important; border-top: 0.5pt solid #ede9fe !important; }
   .ak-section-inner { max-width: 100% !important; }
   .ak-section-title {
@@ -72,94 +65,29 @@
     print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important;
   }
 
-  /* ── Bio longue ── */
+  /* Long bio */
   .ak-bio-long { font-size: 9.5pt !important; color: #333 !important; columns: 2 !important; column-gap: 18pt !important; }
 
-  /* ── Citations ── */
+  /* Quotes */
   .ak-quotes-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8pt !important; }
   .ak-quote { background: #faf7ff !important; border-left: 2pt solid #8b5cf6 !important; border-radius: 0 3pt 3pt 0 !important; padding: 7pt 10pt !important; page-break-inside: avoid; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
   .ak-quote-text { font-size: 8.5pt !important; font-style: italic !important; color: #2d2d2d !important; }
   .ak-quote-source { font-size: 7.5pt !important; color: #7c3aed !important; }
   .ak-quote-source a { color: #7c3aed !important; text-decoration: none !important; }
 
-  /* ── Releases ── */
-  .ak-releases-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 7pt !important; }
-  .ak-release-card { border: 1pt solid #ede9fe !important; border-radius: 4pt !important; overflow: hidden !important; page-break-inside: avoid; background: #fff !important; position: static !important; }
-  .ak-release-artwork { display: block !important; height: 70pt !important; width: 100% !important; object-fit: cover !important; }
-  .ak-release-info { padding: 5pt !important; }
-  .ak-release-card .ak-release-title { font-size: 8pt !important; color: #1a1a1a !important; }
-  .ak-release-type { font-size: 7pt !important; color: #7c3aed !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-
-  /* ── Contact ── */
+  /* Contact */
   .ak-contact-grid { display: flex !important; gap: 8pt !important; flex-wrap: nowrap !important; }
   .ak-contact-card { background: #f5f3ff !important; border: 1pt solid #ede9fe !important; border-radius: 4pt !important; padding: 7pt 10pt !important; flex: 1 !important; min-width: 0 !important; page-break-inside: avoid; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-  .ak-contact-role { font-size: 7pt !important; color: #7c3aed !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-  .ak-contact-role { font-size: 7pt !important; display: block !important; margin-bottom: 3pt !important; }
+  .ak-contact-role { font-size: 7pt !important; color: #7c3aed !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; display: block !important; margin-bottom: 3pt !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
   .ak-contact-email { font-size: 9pt !important; color: #4c1d95 !important; text-decoration: underline !important; }
 
-  /* ── Assets presse — utiles en PDF, liens cliquables ── */
+  /* Press assets — clickable links useful in PDF */
   .ak-section-assets { display: block !important; }
   .ak-assets-row { display: flex !important; gap: 8pt !important; }
   .ak-assets-row a { display: inline-block !important; border: 1pt solid #8b5cf6 !important; color: #4c1d95 !important; padding: 4pt 10pt !important; border-radius: 3pt !important; font-size: 8.5pt !important; text-decoration: underline !important; font-weight: 600 !important; background: #f5f3ff !important; }
 
-  /* ── Hero release ── */
-  .ak-release-hero { background: #fff !important; padding: 20pt 26pt 14pt !important; border-bottom: 2pt solid #8b5cf6 !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-  .ak-release-hero-inner { grid-template-columns: 90pt 1fr !important; gap: 18pt !important; }
-  .ak-release-artwork-large { width: 90pt !important; border-radius: 4pt !important; }
-  .ak-release-hero .ak-release-title { font-size: 22pt !important; color: #0f0f0f !important; }
-  .ak-release-info-grid { display: flex !important; flex-wrap: wrap !important; gap: 10pt !important; margin: 8pt 0 12pt !important; }
-  .ak-info-item dt { font-size: 7pt !important; color: #7c3aed !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-  .ak-info-item dd { font-size: 10pt !important; color: #1a1a1a !important; }
-
-  /* ── Talking points ── */
-  .ak-talking-point { background: #faf7ff !important; border-left: 2pt solid #8b5cf6 !important; padding: 5pt 10pt !important; page-break-inside: avoid; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-
-  /* ── Tracklist ── */
-  .ak-tracklist { max-width: 100% !important; }
-  .ak-track-row { border-bottom: 0.5pt solid #f0ecff !important; }
-  .ak-track-row:hover { background: transparent !important; }
-
-  /* ── Radio chips ── */
-  .ak-chip { border: 0.5pt solid #ede9fe !important; color: #4c1d95 !important; font-size: 8pt !important; background: #faf7ff !important; print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
-
-  /* ── Sauts de page ── */
+  /* Page breaks */
   .ak-section-quotes, .ak-section-contact { page-break-before: auto; }
-}
-
-/* ─── Bouton PDF dans la nav ────────────────────────────────────────────────── */
-.ak-btn-pdf--nav {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.75rem; font-weight: 700;
-  padding: 5px 13px; border-radius: 6px;
-  border: 1px solid rgba(139,92,246,0.5);
-  color: var(--ak-accent);
-  background: rgba(139,92,246,0.12);
-  cursor: pointer; transition: all 0.18s;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-.ak-btn-pdf--nav:hover {
-  background: rgba(139,92,246,0.22);
-  border-color: var(--ak-accent);
-  color: var(--ak-accent);
-}
-.ak-btn-pdf--nav.ak-loading { opacity: 0.5; cursor: wait; }
-.ak-btn-pdf--nav-locked {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.75rem; font-weight: 700;
-  padding: 5px 13px; border-radius: 6px;
-  border: 1px dashed rgba(139,92,246,0.35);
-  color: rgba(139,92,246,0.55);
-  background: transparent;
-  cursor: pointer; transition: all 0.18s;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-.ak-btn-pdf--nav-locked:hover {
-  border-color: rgba(139,92,246,0.6);
-  color: var(--ak-accent);
 }
 
 /* ─── ArtistKit Frontend — Base Styles ────────────────────────────────────── */
@@ -203,16 +131,9 @@ body.ak-epk {
   height: 100%;
   display: flex; align-items: center; justify-content: space-between;
 }
-.ak-nav-right {
-  display: flex; align-items: center; gap: 10px;
-}
+.ak-nav-right { display: flex; align-items: center; gap: 10px; }
 .ak-nav-logo img { height: 32px; width: auto; object-fit: contain; }
 .ak-nav-site { font-size: 0.95rem; font-weight: 700; color: var(--ak-text); text-decoration: none; }
-.ak-nav-back {
-  font-size: 0.85rem; color: var(--ak-muted); text-decoration: none;
-  transition: color 0.2s;
-}
-.ak-nav-back:hover { color: var(--ak-text); }
 .ak-nav-epk-badge {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ak-accent);
@@ -222,11 +143,7 @@ body.ak-epk {
 }
 
 /* ─── Hero ────────────────────────────────────────────────────────────────── */
-.ak-hero {
-  padding: 72px 40px;
-  position: relative;
-  overflow: hidden;
-}
+.ak-hero { padding: 72px 40px; position: relative; overflow: hidden; }
 .ak-hero::before {
   content: '';
   position: absolute; inset: 0;
@@ -258,10 +175,7 @@ body.ak-epk {
 }
 
 /* ─── Stats ───────────────────────────────────────────────────────────────── */
-.ak-stats {
-  display: flex; gap: 32px;
-  margin-bottom: 28px;
-}
+.ak-stats { display: flex; gap: 32px; margin-bottom: 28px; }
 .ak-stat { display: flex; flex-direction: column; }
 .ak-stat-val { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
 .ak-stat-label { font-size: 0.75rem; color: var(--ak-muted); font-weight: 500; margin-top: 2px; }
@@ -302,7 +216,7 @@ body.ak-epk {
   display: inline-block;
 }
 
-/* ─── Bio longue ──────────────────────────────────────────────────────────── */
+/* ─── Long bio ────────────────────────────────────────────────────────────── */
 .ak-bio-long { font-size: 0.95rem; color: var(--ak-muted); line-height: 1.8; max-width: 680px; }
 .ak-btn-outline {
   display: inline-flex; align-items: center;
@@ -315,7 +229,6 @@ body.ak-epk {
   text-decoration: none;
 }
 .ak-btn-outline:hover { border-color: var(--ak-accent); color: var(--ak-accent); }
-.ak-btn-sm { font-size: 0.78rem; padding: 6px 14px; }
 
 /* ─── Quotes ──────────────────────────────────────────────────────────────── */
 .ak-quotes-grid {
@@ -339,43 +252,6 @@ body.ak-epk {
 .ak-quote-source a { color: inherit; text-decoration: none; }
 .ak-quote-source a:hover { text-decoration: underline; }
 
-/* ─── Releases grid ───────────────────────────────────────────────────────── */
-.ak-releases-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
-.ak-release-card {
-  background: var(--ak-bg3);
-  border: 1px solid var(--ak-border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-  cursor: pointer;
-}
-.ak-release-card:hover { border-color: rgba(139,92,246,0.4); transform: translateY(-2px); }
-/* Lien overlay qui couvre toute la card */
-.ak-release-card-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-/* Boutons cliquables par-dessus l'overlay */
-.ak-release-card .ak-release-actions {
-  position: relative;
-  z-index: 2;
-}
-.ak-release-card .ak-release-spotify-btn {
-  position: relative;
-  z-index: 2;
-}
-.ak-release-artwork { width: 100%; aspect-ratio: 1; object-fit: cover; }
-.ak-release-info { padding: 16px; }
-.ak-release-type { font-size: 0.72rem; font-weight: 700; color: var(--ak-accent); letter-spacing: 0.06em; text-transform: uppercase; }
-.ak-release-card .ak-release-title { font-size: 1.4rem; font-weight: 700; margin: 4px 0 10px; }
-.ak-release-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
 /* ─── Contact ─────────────────────────────────────────────────────────────── */
 .ak-contact-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
 .ak-contact-card {
@@ -389,8 +265,7 @@ body.ak-epk {
 .ak-contact-email { font-size: 0.92rem; font-weight: 600; color: var(--ak-accent); text-decoration: none; }
 .ak-contact-email:hover { text-decoration: underline; }
 
-.ak-assets { margin-top: 8px; }
-.ak-assets-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; color: var(--ak-muted); }
+/* ─── Assets ──────────────────────────────────────────────────────────────── */
 .ak-assets-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .ak-btn-download {
   display: inline-flex; align-items: center; gap: 6px;
@@ -403,7 +278,7 @@ body.ak-epk {
 }
 .ak-btn-download:hover { border-color: var(--ak-accent); color: var(--ak-accent); }
 
-/* Liens sociaux dans le héro */
+/* ─── Hero socials ────────────────────────────────────────────────────────── */
 .ak-hero-socials { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
 .ak-social-pill {
   font-size: 0.75rem; font-weight: 600;
@@ -415,194 +290,6 @@ body.ak-epk {
   transition: border-color 0.15s, color 0.15s;
 }
 .ak-social-pill:hover { border-color: var(--ak-accent); color: var(--ak-accent); text-decoration: none; }
-
-.ak-socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-.ak-social-link {
-  font-size: 0.82rem; font-weight: 600;
-  color: var(--ak-muted); text-decoration: none;
-  transition: color 0.18s;
-}
-.ak-social-link:hover { color: var(--ak-accent); }
-
-/* ─── Release Hero ────────────────────────────────────────────────────────── */
-.ak-release-hero { padding: 60px 40px; }
-.ak-release-hero-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 56px;
-  align-items: start;
-}
-.ak-release-artwork-large {
-  width: 100%; border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-}
-.ak-release-meta-top {
-  margin-bottom: 14px;
-}
-.ak-release-type-badge {
-  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  background: rgba(139,92,246,0.15);
-  border: 1px solid rgba(139,92,246,0.3);
-  color: var(--ak-accent);
-  padding: 3px 10px; border-radius: 20px;
-}
-/* ─── Info grid (date, label, genre) ─────────────────────────────────────── */
-.ak-release-info-grid {
-  display: flex;
-  gap: 0;
-  margin: 18px 0 24px;
-  padding: 0;
-  flex-wrap: wrap;
-}
-.ak-info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 0 20px 0 0;
-  margin: 0 20px 0 0;
-  border-right: 1px solid var(--ak-border);
-}
-.ak-info-item:last-child {
-  border-right: none;
-  padding-right: 0;
-  margin-right: 0;
-}
-.ak-info-item dt {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ak-muted2, var(--ak-muted));
-  opacity: 0.7;
-}
-.ak-info-item dd {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--ak-text);
-  margin: 0;
-}
-@media (max-width: 480px) {
-  .ak-release-info-grid { gap: 12px; }
-  .ak-info-item { border-right: none; padding-right: 0; margin-right: 0; }
-}
-.ak-release-hero .ak-release-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 900; letter-spacing: -0.025em;
-  line-height: 1.05; margin-bottom: 10px;
-}
-
-/* ─── Radio chips ─────────────────────────────────────────────────────────── */
-.ak-radio-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.ak-chip {
-  font-size: 0.75rem; font-weight: 600;
-  padding: 4px 12px; border-radius: 20px;
-  background: var(--ak-bg3);
-  border: 1px solid var(--ak-border);
-  color: var(--ak-muted);
-}
-.ak-chip-radio { color: #22c55e; border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
-.ak-chip-isrc { font-family: monospace; font-size: 0.72rem; }
-
-/* ─── Media section : split Écouter / Clip ────────────────────────────────── */
-.ak-media-split {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-}
-/* Split 50/50 quand les deux colonnes sont présentes */
-.ak-section-media--split .ak-media-col {
-  flex: 1;
-  min-width: 0;
-}
-/* Solo : colonne unique prend toute la largeur */
-.ak-section-media:not(.ak-section-media--split) .ak-media-col {
-  width: 100%;
-}
-.ak-col-title {
-  margin-bottom: 16px !important;
-}
-@media (max-width: 768px) {
-  .ak-media-split { flex-direction: column; gap: 32px; }
-}
-
-/* ─── Embed audio ─────────────────────────────────────────────────────────── */
-.ak-embed-wrap {
-  border-radius: 12px; overflow: hidden;
-  border: 1px solid var(--ak-border);
-  width: 100%;
-}
-.ak-embed-wrap iframe { display: block; width: 100%; }
-
-/* Player MP3 quand il suit un embed */
-.ak-audio-player--below-embed {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--ak-border);
-}
-
-/* ─── Clip vidéo ──────────────────────────────────────────────────────────── */
-.ak-clip-wrap {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--ak-border);
-}
-.ak-clip-wrap iframe { display: block; width: 100%; }
-
-/* ─── Split éditorial : Angles + Tracklist ───────────────────────────────── */
-.ak-editorial-split {
-  display: flex;
-  gap: 48px;
-  align-items: flex-start;
-}
-.ak-section-editorial--split .ak-editorial-col {
-  flex: 1;
-  min-width: 0;
-}
-.ak-section-editorial:not(.ak-section-editorial--split) .ak-editorial-col {
-  width: 100%;
-}
-@media (max-width: 768px) {
-  .ak-editorial-split { flex-direction: column; gap: 32px; }
-}
-
-/* ─── Talking points ──────────────────────────────────────────────────────── */
-.ak-talking-points { display: flex; flex-direction: column; gap: 14px; }
-.ak-talking-point {
-  display: flex; gap: 14px; align-items: flex-start;
-  background: var(--ak-bg3);
-  border: 1px solid var(--ak-border);
-  border-left: 3px solid var(--ak-accent);
-  border-radius: 10px;
-  padding: 16px 20px;
-  font-size: 0.92rem; color: var(--ak-muted);
-}
-.ak-tp-bullet { color: var(--ak-accent); font-weight: 700; flex-shrink: 0; }
-
-/* ─── Tracklist ───────────────────────────────────────────────────────────── */
-.ak-tracklist { display: flex; flex-direction: column; gap: 2px; }
-.ak-track-row {
-  display: flex; align-items: center; gap: 16px;
-  padding: 12px 16px; border-radius: 8px;
-  transition: background 0.15s;
-}
-.ak-track-row:hover { background: var(--ak-bg3); }
-.ak-track-num { font-size: 0.78rem; font-weight: 700; color: var(--ak-muted2); width: 24px; flex-shrink: 0; }
-.ak-track-title { font-size: 0.92rem; font-weight: 500; }
-
-/* ─── Release story ───────────────────────────────────────────────────────── */
-.ak-release-story {
-  font-size: 1rem;
-  color: var(--ak-muted);
-  line-height: 1.85;
-  max-width: 100%;
-  columns: 2;
-  column-gap: 56px;
-}
-@media (max-width: 768px) {
-  .ak-release-story { columns: 1; }
-}
 
 /* ─── Audio player ────────────────────────────────────────────────────────── */
 .ak-audio-label {
@@ -621,39 +308,9 @@ body.ak-epk {
 }
 .ak-btn-audio-dl { align-self: flex-start; }
 
-/* ─── Password screen ─────────────────────────────────────────────────────── */
-.ak-password-screen {
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
-}
-.ak-password-card {
-  background: var(--ak-bg3);
-  border: 1px solid var(--ak-border);
-  border-radius: 20px;
-  padding: 48px;
-  max-width: 420px; width: 100%;
-  text-align: center;
-}
-.ak-password-icon { font-size: 2.5rem; margin-bottom: 20px; }
-.ak-password-card h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
-.ak-password-card p { font-size: 0.88rem; color: var(--ak-muted); margin-bottom: 28px; }
-.ak-password-form { display: flex; flex-direction: column; gap: 12px; }
-.ak-password-form input {
-  background: var(--ak-bg2); border: 1px solid var(--ak-border);
-  border-radius: 10px; padding: 12px 16px;
-  color: var(--ak-text); font-size: 0.95rem;
-  width: 100%;
-}
-.ak-password-error { font-size: 0.82rem; color: #ef4444; background: rgba(239,68,68,0.1); padding: 8px 12px; border-radius: 8px; }
-.ak-btn-primary {
-  background: var(--ak-accent); color: #fff;
-  font-size: 0.95rem; font-weight: 700;
-  padding: 12px; border-radius: 10px;
-  border: none; cursor: pointer;
-  transition: opacity 0.2s;
-}
-.ak-btn-primary:hover { opacity: 0.88; }
+/* ─── Artist embed ────────────────────────────────────────────────────────── */
+.ak-artist-embed { margin-bottom: 24px; }
+.ak-audio-player--spaced { margin-top: 8px; }
 
 /* ─── Footer ──────────────────────────────────────────────────────────────── */
 .ak-footer {
@@ -669,126 +326,13 @@ body.ak-epk {
 .ak-footer-brand { color: var(--ak-muted2); text-decoration: none; transition: color 0.2s; }
 .ak-footer-brand:hover { color: var(--ak-accent); }
 
-/* ─── Artist embed (Spotify / SoundCloud on artist EPK) ──────────────────── */
-.ak-artist-embed {
-  margin-bottom: 24px;
-}
-.ak-audio-player--spaced {
-  margin-top: 8px;
-}
-
-/* ─── Patchwork de titres ─────────────────────────────────────────────────── */
-.ak-patchwork-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.ak-patch-card {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  background: var(--ak-card-bg, #1a1a1a);
-}
-.ak-patch-card:hover .ak-patch-play {
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-.ak-patch-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease;
-}
-.ak-patch-card:hover .ak-patch-bg {
-  transform: scale(1.05);
-}
-.ak-patch-bg--placeholder {
-  background: linear-gradient(135deg, var(--ak-accent), #1e1e1e);
-}
-
-.ak-patch-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 100%);
-  transition: background 0.3s;
-}
-.ak-patch-card:hover .ak-patch-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.15) 100%);
-}
-
-.ak-patch-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.9);
-  background: rgba(0,0,0,0.45);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s;
-  z-index: 2;
-  padding: 0;
-}
-.ak-patch-play:hover {
-  background: var(--ak-accent);
-  border-color: var(--ak-accent);
-}
-.ak-patch-play-icon,
-.ak-patch-pause-icon {
-  width: 18px;
-  height: 18px;
-}
-.ak-patch-play-icon { margin-left: 2px; } /* optical centering for play triangle */
-
-.ak-patch-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 8px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  z-index: 2;
-}
-
-/* Playing state */
-.ak-patch-card.is-playing .ak-patch-play {
-  background: var(--ak-accent);
-  border-color: var(--ak-accent);
-}
-
 /* ─── Responsive ──────────────────────────────────────────────────────────── */
-
-/* ── Tablette (≤ 1024px) ── */
 @media (max-width: 1024px) {
   .ak-hero-inner { grid-template-columns: 1fr 240px; gap: 44px; }
-  .ak-release-hero-inner { grid-template-columns: 220px 1fr; gap: 40px; }
-  .ak-patchwork-grid { grid-template-columns: repeat(3, 1fr); }
-  .ak-releases-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
 
-/* ── Mobile (≤ 768px) ── */
 @media (max-width: 768px) {
-  /* Nav */
   .ak-nav { padding: 0 20px; }
-  .ak-btn-pdf-label { display: none; }
-
-  /* Hero artiste */
   .ak-hero { padding: 40px 20px 32px; }
   .ak-hero-inner { grid-template-columns: 1fr; gap: 28px; }
   .ak-hero-image { order: -1; }
@@ -796,77 +340,27 @@ body.ak-epk {
   .ak-artist-name { font-size: clamp(2rem, 9vw, 2.8rem); }
   .ak-bio-short { max-width: 100%; }
   .ak-stats { gap: 20px; flex-wrap: wrap; }
-
-  /* Hero release */
-  .ak-release-hero { padding: 36px 20px 28px; }
-  .ak-release-hero-inner { grid-template-columns: 1fr; gap: 24px; }
-  .ak-release-artwork-wrap { max-width: 200px; margin: 0 auto; }
-  .ak-release-artwork-large { max-width: 200px; display: block; margin: 0 auto; }
-  .ak-release-hero .ak-release-title { font-size: clamp(1.8rem, 8vw, 2.5rem); }
-
-  /* PDF button */
-  .ak-pdf-btn-wrap { padding: 10px 20px 0; }
-
-  /* Sections */
   .ak-section { padding: 36px 20px; }
   .ak-section-title { font-size: 1.2rem; }
-
-  /* Media / Editorial splits (already handled per-component but explicit here) */
-  .ak-media-split { flex-direction: column; gap: 32px; }
-  .ak-editorial-split { flex-direction: column; gap: 32px; }
-  .ak-release-story { columns: 1; }
-
-  /* Patchwork */
-  .ak-patchwork-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-
-  /* Releases */
-  .ak-releases-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .ak-release-card .ak-release-title { font-size: 1rem; }
-
-  /* Quotes */
   .ak-quotes-grid { grid-template-columns: 1fr; }
-
-  /* Contact */
   .ak-contact-card { min-width: 0; width: 100%; }
-
-  /* Footer */
   .ak-footer { padding: 20px; }
   .ak-footer-inner { flex-direction: column; gap: 8px; text-align: center; }
 }
 
-/* ── Petits mobiles (≤ 480px) ── */
 @media (max-width: 480px) {
   .ak-nav { padding: 0 16px; }
   .ak-hero { padding: 28px 16px 24px; }
   .ak-section { padding: 28px 16px; }
-  .ak-release-hero { padding: 24px 16px 20px; }
-  .ak-pdf-btn-wrap { padding: 8px 16px 0; }
-
   .ak-artist-name { font-size: clamp(1.8rem, 10vw, 2.4rem); }
   .ak-section-title { font-size: 1.1rem; }
-
   .ak-stats { gap: 14px; }
   .ak-stat-val { font-size: 1.3rem; }
   .ak-stat-label { font-size: 0.7rem; }
-
   .ak-stream-btn { font-size: 0.78rem; padding: 7px 12px; }
-
   .ak-hero-image img { max-width: 160px; }
-  .ak-release-artwork-large { max-width: 160px; }
-
-  .ak-patchwork-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .ak-patch-play { width: 38px; height: 38px; }
-
-  .ak-releases-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .ak-release-card .ak-release-title { font-size: 0.88rem; }
-  .ak-release-info { padding: 10px; }
-
-  .ak-talking-point { padding: 12px 14px; font-size: 0.88rem; }
   .ak-contact-grid { gap: 10px; }
   .ak-contact-card { padding: 14px 16px; }
-
   .ak-quotes-grid { gap: 12px; }
   .ak-quote { padding: 16px; }
-
-  .ak-password-card { padding: 28px 20px; }
 }
