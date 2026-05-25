@@ -4,7 +4,7 @@ Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 
 == Changelog ==
 
+= 2.0.1 =
+* Fix: `/epk` URL returned 404 immediately after a fresh activation. The rewrite rules flush now happens once on the next `init` hook (after the CPT and custom rewrite rules are registered) instead of during the activation callback. Users no longer need to manually save permalinks after activation.
+
 = 2.0.0 =
 * Major refactor: Pro features moved to a separate add-on plugin (ArtistKit Pro)
 * Cleaner free plugin focused on essential EPK creation
@@ -115,6 +118,9 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 * Initial public release
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Fixes a permalink 404 after fresh activation. Recommended for all 2.0.0 installs.
 
 = 2.0.0 =
 Major version with architectural changes. Pro features (Release EPKs, Analytics, PDF Export, etc.) are now in a separate ArtistKit Pro add-on plugin available at promotracker.fr/artistkit. Existing Pro users: download the new ArtistKit Pro plugin from your account.

@@ -12,6 +12,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 // Delete plugin options
 delete_option( 'ak_settings' );
 delete_option( 'ak_version' );
+delete_option( 'ak_needs_rewrite_flush' );
 
 // Delete Artist EPK CPT data
 $artists = get_posts( [

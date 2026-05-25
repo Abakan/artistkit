@@ -3,7 +3,7 @@
  * Plugin Name:  ArtistKit
  * Plugin URI:   https://promotracker.fr/artistkit
  * Description:  Free Electronic Press Kit builder for musicians. Create your artist EPK directly on your WordPress site.
- * Version:      2.0.0
+ * Version:      2.0.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author:       PromoTracker
@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // ─── Constants ───────────────────────────────────────────────────────────────
-define( 'AK_VERSION', '2.0.0' );
+define( 'AK_VERSION', '2.0.1' );
 define( 'AK_FILE',    __FILE__ );
 define( 'AK_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'AK_URL',     plugin_dir_url( __FILE__ ) );
@@ -32,8 +32,16 @@ register_activation_hook( __FILE__, 'ak_activate' );
 register_deactivation_hook( __FILE__, 'ak_deactivate' );
 
 function ak_activate() {
-    AK_Post_Types::register();
-    flush_rewrite_rules();
+    // Defer flush_rewrite_rules() to the next `init` hook.
+    //
+    // The CPT and custom rewrite rules are registered on `init` (priority 10),
+    // which fires AFTER the activation callback. Flushing here would rebuild
+    // the rules cache without knowledge of `ak_artist_epk` and `^epk/?$`,
+    // causing /epk URLs to 404 until the user manually saves permalinks.
+    //
+    // Setting a flag here and flushing on `init` priority 99 ensures the CPT
+    // and rewrite rules are registered first.
+    update_option( 'ak_needs_rewrite_flush', '1' );
 
     if ( ! get_option( 'ak_settings' ) ) {
         $defaults = [
@@ -47,6 +55,9 @@ function ak_activate() {
 }
 
 function ak_deactivate() {
+    // Safe to flush directly here — the plugin has been running, so the CPT
+    // and rewrite rules were registered on `init` earlier in this request.
+    // Flushing now removes our rules from the cache before deactivation.
     flush_rewrite_rules();
 }
 
@@ -63,11 +74,23 @@ function ak_init() {
         AK_Admin::init();
     }
 
+    // Flush rewrite rules once after activation, AFTER the CPT and custom
+    // rewrites have been registered. Priority 99 runs after the default
+    // priority 10 callbacks that register the CPT and rewrite rules.
+    add_action( 'init', 'ak_maybe_flush_rewrite_rules', 99 );
+
     /**
      * Extension hook for ArtistKit Pro add-on.
      * The Pro plugin hooks here to bootstrap its features without modifying Free code.
      */
     do_action( 'artistkit_init' );
+}
+
+function ak_maybe_flush_rewrite_rules() {
+    if ( get_option( 'ak_needs_rewrite_flush' ) ) {
+        flush_rewrite_rules();
+        delete_option( 'ak_needs_rewrite_flush' );
+    }
 }
 
 // ─── Settings helper ─────────────────────────────────────────────────────────
