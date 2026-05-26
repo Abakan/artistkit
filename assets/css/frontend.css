@@ -117,6 +117,19 @@ body.ak-epk {
   min-height: 100vh;
 }
 
+/* Force the EPK font on every descendant. Some themes (Hello Elementor,
+   theme resets) declare `font-family: inherit` on h1-h6 — once `body.ak-epk`
+   has a valid font-family, descendants inherit it correctly. The explicit
+   selectors below add defense-in-depth without using !important so the
+   host theme can still cascade if needed. Scoped to `.ak-epk` so this
+   never bleeds to the WordPress admin or other front-end pages. */
+.ak-epk,
+.ak-epk h1, .ak-epk h2, .ak-epk h3, .ak-epk h4, .ak-epk h5, .ak-epk h6,
+.ak-epk p, .ak-epk a, .ak-epk span, .ak-epk div, .ak-epk li,
+.ak-epk button, .ak-epk input, .ak-epk textarea, .ak-epk select {
+  font-family: var(--ak-font), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 /* ─── Nav ─────────────────────────────────────────────────────────────────── */
 .ak-nav {
   position: sticky; top: 0; z-index: 100;
@@ -333,10 +346,13 @@ body.ak-epk {
 
 @media (max-width: 768px) {
   .ak-nav { padding: 0 20px; }
+  /* Hero: 20px horizontal padding (cover doesn't touch screen edges).
+     Cover stretches to fill the inner width. */
   .ak-hero { padding: 40px 20px 32px; }
   .ak-hero-inner { grid-template-columns: 1fr; gap: 28px; }
-  .ak-hero-image { order: -1; }
-  .ak-hero-image img { max-width: 200px; margin: 0 auto; display: block; }
+  .ak-hero-image { order: -1; margin: 0; }
+  .ak-hero-image img { width: 100%; max-width: none; margin: 0; display: block; box-shadow: 0 14px 36px rgba(0,0,0,0.45); }
+  .ak-hero-content { padding: 0; }
   .ak-artist-name { font-size: clamp(2rem, 9vw, 2.8rem); }
   .ak-bio-short { max-width: 100%; }
   .ak-stats { gap: 20px; flex-wrap: wrap; }
@@ -350,7 +366,9 @@ body.ak-epk {
 
 @media (max-width: 480px) {
   .ak-nav { padding: 0 16px; }
+  /* Hero: 16px horizontal padding on smallest viewports. */
   .ak-hero { padding: 28px 16px 24px; }
+  .ak-hero-content { padding: 0; }
   .ak-section { padding: 28px 16px; }
   .ak-artist-name { font-size: clamp(1.8rem, 10vw, 2.4rem); }
   .ak-section-title { font-size: 1.1rem; }
@@ -358,7 +376,7 @@ body.ak-epk {
   .ak-stat-val { font-size: 1.3rem; }
   .ak-stat-label { font-size: 0.7rem; }
   .ak-stream-btn { font-size: 0.78rem; padding: 7px 12px; }
-  .ak-hero-image img { max-width: 160px; }
+  /* Cover stays full-width — inherits width:100% / max-width:none from the 768px rule above. */
   .ak-contact-grid { gap: 10px; }
   .ak-contact-card { padding: 14px 16px; }
   .ak-quotes-grid { gap: 12px; }

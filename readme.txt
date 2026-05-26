@@ -4,7 +4,7 @@ Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 
 == Changelog ==
 
+= 2.0.3 =
+* Fix: Artist cover artwork now displays full-width on mobile devices (≤ 768px) for better visual impact.
+
 = 2.0.2 =
 * Compliance: pass WordPress.org Plugin Check audit.
   - Move inline `<style>` and `<script>` tags to `wp_enqueue_style/script` + `wp_add_inline_style`; the EPK template now uses `wp_head()` / `wp_footer()`.
@@ -128,6 +131,9 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 * Initial public release
 
 == Upgrade Notice ==
+
+= 2.0.3 =
+Visual improvement: full-width cover on mobile.
 
 = 2.0.2 =
 WordPress.org compliance pass — proper asset enqueueing, full output escaping. Recommended for all installs.

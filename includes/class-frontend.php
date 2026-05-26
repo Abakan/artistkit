@@ -92,10 +92,32 @@ class AK_Frontend {
             AK_VERSION
         );
 
-        // Dynamic CSS variables — accent color + chosen font family
+        // Dynamic CSS variables — accent color + chosen font family.
+        //
+        // ⚠️ Do NOT esc_attr()/esc_html() these values: this is CSS, not HTML.
+        // HTML escaping would turn `'Inter'` into `&#039;Inter&#039;`, making
+        // the custom property invalid and forcing the browser to fall back to
+        // the user-agent serif (Times).
+        //
+        // Sanitization strategy:
+        //   - Accent color: sanitize_hex_color() rejects anything that isn't
+        //     a valid hex literal (#RGB / #RRGGBB / null).
+        //   - Font family: whitelist via the artistkit_font_families filter
+        //     (values are hardcoded string literals in Free/Pro). Belt-and-
+        //     braces strip any character that isn't part of a normal CSS
+        //     font-family list.
+        $ak_accent_safe = sanitize_hex_color( $ak_accent );
+        if ( ! $ak_accent_safe ) {
+            $ak_accent_safe = '#8b5cf6';
+        }
+        $ak_ff_safe = preg_replace( "/[^A-Za-z0-9 ,\\-_'\"]/", '', (string) $ak_ff );
+        if ( '' === $ak_ff_safe ) {
+            $ak_ff_safe = "'Inter', sans-serif";
+        }
+
         wp_add_inline_style(
             'ak-frontend',
-            sprintf( ':root{--ak-accent:%s;--ak-font:%s;}', esc_attr( $ak_accent ), esc_attr( $ak_ff ) )
+            sprintf( ':root{--ak-accent:%s;--ak-font:%s;}', $ak_accent_safe, $ak_ff_safe )
         );
 
         // Frontend JS (footer)
