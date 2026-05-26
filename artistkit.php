@@ -3,7 +3,7 @@
  * Plugin Name:  ArtistKit
  * Plugin URI:   https://promotracker.fr/artistkit
  * Description:  Free Electronic Press Kit builder for musicians. Create your artist EPK directly on your WordPress site.
- * Version:      2.0.1
+ * Version:      2.0.2
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author:       PromoTracker
@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // ─── Constants ───────────────────────────────────────────────────────────────
-define( 'AK_VERSION', '2.0.1' );
+define( 'AK_VERSION', '2.0.2' );
 define( 'AK_FILE',    __FILE__ );
 define( 'AK_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'AK_URL',     plugin_dir_url( __FILE__ ) );
@@ -65,7 +65,8 @@ function ak_deactivate() {
 add_action( 'plugins_loaded', 'ak_init' );
 
 function ak_init() {
-    load_plugin_textdomain( 'artistkit', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+    // load_plugin_textdomain() is no longer needed for plugins hosted on WordPress.org
+    // (WP 4.6+ loads translations automatically from the languages/ directory).
 
     AK_Post_Types::init();
     AK_Frontend::init();

@@ -15,17 +15,19 @@ delete_option( 'ak_version' );
 delete_option( 'ak_needs_rewrite_flush' );
 
 // Delete Artist EPK CPT data
-$artists = get_posts( [
+$ak_artists = get_posts( [
     'post_type'   => 'ak_artist_epk',
     'numberposts' => -1,
     'post_status' => 'any',
     'fields'      => 'ids',
 ] );
 
-foreach ( $artists as $artist_id ) {
-    wp_delete_post( $artist_id, true );
+foreach ( $ak_artists as $ak_artist_id ) {
+    wp_delete_post( $ak_artist_id, true );
 }
 
-// Clean orphan postmeta
+// Clean orphan postmeta. Direct query is acceptable here — uninstall.php is a
+// one-shot teardown, not a runtime path, so the lack of caching is expected.
 global $wpdb;
+// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- uninstall teardown
 $wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE post_id NOT IN (SELECT ID FROM {$wpdb->posts})" );

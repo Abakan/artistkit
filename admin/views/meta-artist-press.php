@@ -4,13 +4,13 @@
 
   <div id="ak-quotes-list">
     <?php if ( $quotes ) :
-      foreach ( $quotes as $i => $q ) : ?>
+      foreach ( $quotes as $ak_i => $ak_q ) : ?>
         <div class="ak-quote-row">
           <div class="ak-quote-fields">
-            <textarea name="ak_press_quotes[<?php echo (int) $i; ?>][quote]" rows="2" placeholder="&quot;A sound that redefines the boundaries of house music&quot;" class="widefat"><?php echo esc_textarea( $q['quote'] ); ?></textarea>
+            <textarea name="ak_press_quotes[<?php echo (int) $ak_i; ?>][quote]" rows="2" placeholder="&quot;A sound that redefines the boundaries of house music&quot;" class="widefat"><?php echo esc_textarea( $ak_q['quote'] ); ?></textarea>
             <div class="ak-quote-meta">
-              <input type="text" name="ak_press_quotes[<?php echo (int) $i; ?>][source]" value="<?php echo esc_attr( $q['source'] ); ?>" placeholder="<?php esc_attr_e( 'Source / Media', 'artistkit' ); ?>" />
-              <input type="url" name="ak_press_quotes[<?php echo (int) $i; ?>][url]" value="<?php echo esc_attr( $q['url'] ); ?>" placeholder="https://..." />
+              <input type="text" name="ak_press_quotes[<?php echo (int) $ak_i; ?>][source]" value="<?php echo esc_attr( $ak_q['source'] ); ?>" placeholder="<?php esc_attr_e( 'Source / Media', 'artistkit' ); ?>" />
+              <input type="url" name="ak_press_quotes[<?php echo (int) $ak_i; ?>][url]" value="<?php echo esc_attr( $ak_q['url'] ); ?>" placeholder="https://..." />
             </div>
           </div>
           <button type="button" class="ak-remove-quote button">✕</button>

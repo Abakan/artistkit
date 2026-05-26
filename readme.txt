@@ -2,9 +2,9 @@
 Contributors: hexagonwebfr
 Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,16 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 
 == Changelog ==
 
+= 2.0.2 =
+* Compliance: pass WordPress.org Plugin Check audit.
+  - Move inline `<style>` and `<script>` tags to `wp_enqueue_style/script` + `wp_add_inline_style`; the EPK template now uses `wp_head()` / `wp_footer()`.
+  - Escape all output (`esc_html`, `esc_url`, `esc_attr`) including contact emails (replace `antispambot()` wrap with `esc_html` of an `antispambot` output).
+  - Prefix template-level local variables with `ak_` to satisfy Plugin Check `PrefixAllGlobals`.
+  - Remove obsolete `load_plugin_textdomain()` call (WP 4.6+ auto-loads).
+  - Use `wp_safe_redirect()` instead of `wp_redirect()`.
+  - Annotate known false-positive nonce checks and the uninstall-only direct DB query with `phpcs:ignore`.
+* Tested up to WordPress 7.0.
+
 = 2.0.1 =
 * Fix: `/epk` URL returned 404 immediately after a fresh activation. The rewrite rules flush now happens once on the next `init` hook (after the CPT and custom rewrite rules are registered) instead of during the activation callback. Users no longer need to manually save permalinks after activation.
 
@@ -118,6 +128,9 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 * Initial public release
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+WordPress.org compliance pass — proper asset enqueueing, full output escaping. Recommended for all installs.
 
 = 2.0.1 =
 Fixes a permalink 404 after fresh activation. Recommended for all 2.0.0 installs.

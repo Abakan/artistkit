@@ -1,5 +1,5 @@
 <?php defined( 'ABSPATH' ) || exit;
-$platforms = [
+$ak_platforms = [
     'ak_spotify_url'     => [ 'label' => 'Spotify',      'icon' => '🎵', 'placeholder' => 'https://open.spotify.com/artist/...' ],
     'ak_apple_music_url' => [ 'label' => 'Apple Music',  'icon' => '🍎', 'placeholder' => 'https://music.apple.com/...' ],
     'ak_youtube_url'     => [ 'label' => 'YouTube',      'icon' => '▶️', 'placeholder' => 'https://youtube.com/...' ],
@@ -13,12 +13,12 @@ $platforms = [
 ];
 ?>
 <div class="ak-links-grid">
-  <?php foreach ( $platforms as $key => $p ) : ?>
+  <?php foreach ( $ak_platforms as $ak_key => $ak_p ) : ?>
     <div class="ak-field-group ak-link-field">
-      <label><?php echo $p['icon']; ?> <?php echo esc_html( $p['label'] ); ?></label>
-      <input type="url" name="<?php echo esc_attr( $key ); ?>"
-        value="<?php echo esc_attr( $d[ $key ] ?? '' ); ?>"
-        placeholder="<?php echo esc_attr( $p['placeholder'] ); ?>"
+      <label><?php echo esc_html( $ak_p['icon'] ); ?> <?php echo esc_html( $ak_p['label'] ); ?></label>
+      <input type="url" name="<?php echo esc_attr( $ak_key ); ?>"
+        value="<?php echo esc_attr( $d[ $ak_key ] ?? '' ); ?>"
+        placeholder="<?php echo esc_attr( $ak_p['placeholder'] ); ?>"
         class="widefat" />
     </div>
   <?php endforeach; ?>

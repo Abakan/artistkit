@@ -125,6 +125,7 @@ class AK_Admin {
     }
 
     public static function save_settings() {
+        // Nonce is verified here for the whole function.
         check_admin_referer( 'ak_save_settings' );
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_die( esc_html__( 'Permission denied.', 'artistkit' ) );
@@ -140,11 +141,11 @@ class AK_Admin {
         /**
          * Filter — Pro saves its own settings fields (e.g. license_key) on top.
          */
-        $settings = apply_filters( 'artistkit_save_settings', $settings, $_POST );
+        $settings = apply_filters( 'artistkit_save_settings', $settings, $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked above
 
         update_option( 'ak_settings', $settings );
 
-        wp_redirect( add_query_arg( [
+        wp_safe_redirect( add_query_arg( [
             'page'    => 'artistkit-settings',
             'updated' => '1',
         ], admin_url( 'admin.php' ) ) );
@@ -216,6 +217,7 @@ class AK_Admin {
     // ── Save meta boxes ──────────────────────────────────────────────────────
 
     public static function save_meta_boxes( $post_id ) {
+        // Nonce is verified at function entry — all $_POST accesses below are guarded.
         if ( ! isset( $_POST['ak_meta_nonce'] ) ) return;
         if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ak_meta_nonce'] ) ), 'ak_save_meta' ) ) return;
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
@@ -244,15 +246,16 @@ class AK_Admin {
 
             // Press quotes (array)
             if ( isset( $_POST['ak_press_quotes'] ) && is_array( $_POST['ak_press_quotes'] ) ) {
-                $quotes = [];
-                foreach ( wp_unslash( $_POST['ak_press_quotes'] ) as $q ) {
-                    $quotes[] = [
-                        'quote'  => sanitize_textarea_field( $q['quote'] ?? '' ),
-                        'source' => sanitize_text_field( $q['source'] ?? '' ),
-                        'url'    => esc_url_raw( $q['url'] ?? '' ),
+                $ak_quotes = [];
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked at function entry
+                foreach ( wp_unslash( $_POST['ak_press_quotes'] ) as $ak_q ) {
+                    $ak_quotes[] = [
+                        'quote'  => sanitize_textarea_field( $ak_q['quote'] ?? '' ),
+                        'source' => sanitize_text_field( $ak_q['source'] ?? '' ),
+                        'url'    => esc_url_raw( $ak_q['url'] ?? '' ),
                     ];
                 }
-                update_post_meta( $post_id, 'ak_press_quotes', $quotes );
+                update_post_meta( $post_id, 'ak_press_quotes', $ak_quotes );
             }
         }
 
@@ -264,6 +267,10 @@ class AK_Admin {
 
     // ── Helpers ──────────────────────────────────────────────────────────────
 
+    /**
+     * @phpcs:disable WordPress.Security.NonceVerification.Missing
+     * Called only from save_meta_boxes() which verifies the nonce on entry.
+     */
     private static function save_text_fields( $post_id, $fields ) {
         foreach ( $fields as $field ) {
             if ( isset( $_POST[ $field ] ) ) {
@@ -279,6 +286,7 @@ class AK_Admin {
             }
         }
     }
+    // phpcs:enable WordPress.Security.NonceVerification.Missing
 
     private static function get_post_meta_all( $post_id, $keys ) {
         $data = [];
@@ -299,7 +307,8 @@ class AK_Admin {
         $screen = get_current_screen();
         if ( ! $screen || strpos( $screen->id, 'artistkit' ) === false ) return;
 
-        if ( isset( $_GET['updated'] ) && $_GET['updated'] === '1' ) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- flash flag only, no destructive action
+        if ( isset( $_GET['updated'] ) && '1' === sanitize_text_field( wp_unslash( $_GET['updated'] ) ) ) {
             echo '<div class="notice notice-success is-dismissible"><p>✅ ' . esc_html__( 'Settings saved.', 'artistkit' ) . '</p></div>';
         }
 
