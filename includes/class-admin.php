@@ -89,8 +89,8 @@ class AK_Admin {
         if ( ! $is_artistkit_screen ) return;
 
         wp_enqueue_media();
-        wp_enqueue_style( 'ak-admin', AK_URL . 'assets/css/admin.css', [], AK_VERSION );
-        wp_enqueue_script( 'ak-admin', AK_URL . 'assets/js/admin.js', [ 'jquery' ], AK_VERSION, true );
+        wp_enqueue_style( 'ak-admin', ARTISTKIT_URL . 'assets/css/admin.css', [], ARTISTKIT_VERSION );
+        wp_enqueue_script( 'ak-admin', ARTISTKIT_URL . 'assets/js/admin.js', [ 'jquery' ], ARTISTKIT_VERSION, true );
         wp_localize_script( 'ak-admin', 'AK', [
             'ajaxUrl' => admin_url( 'admin-ajax.php' ),
             'nonce'   => wp_create_nonce( 'ak_admin' ),
@@ -112,16 +112,16 @@ class AK_Admin {
 
     public static function page_dashboard() {
         $artist_epk = self::get_artist_epk();
-        include AK_DIR . 'admin/views/dashboard.php';
+        include ARTISTKIT_DIR . 'admin/views/dashboard.php';
     }
 
     public static function page_settings() {
-        $settings = get_option( 'ak_settings', [] );
-        include AK_DIR . 'admin/views/settings.php';
+        $settings = get_option( 'artistkit_settings', [] );
+        include ARTISTKIT_DIR . 'admin/views/settings.php';
     }
 
     public static function page_upgrade() {
-        include AK_DIR . 'admin/views/upgrade.php';
+        include ARTISTKIT_DIR . 'admin/views/upgrade.php';
     }
 
     public static function save_settings() {
@@ -131,7 +131,7 @@ class AK_Admin {
             wp_die( esc_html__( 'Permission denied.', 'artistkit' ) );
         }
 
-        $settings = get_option( 'ak_settings', [] );
+        $settings = get_option( 'artistkit_settings', [] );
 
         $settings['accent_color'] = isset( $_POST['accent_color'] ) ? sanitize_hex_color( wp_unslash( $_POST['accent_color'] ) ) : '#8b5cf6';
         $settings['font_pair']    = isset( $_POST['font_pair'] ) ? sanitize_text_field( wp_unslash( $_POST['font_pair'] ) ) : 'inter';
@@ -140,10 +140,16 @@ class AK_Admin {
 
         /**
          * Filter — Pro saves its own settings fields (e.g. license_key) on top.
+         *
+         * $_POST is unslashed and shallow-sanitized before being exposed to
+         * filter callbacks. Callbacks remain responsible for re-sanitizing each
+         * field according to its own expected type.
          */
-        $settings = apply_filters( 'artistkit_save_settings', $settings, $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked above
+        $raw_post       = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked above
+        $sanitized_post = is_array( $raw_post ) ? map_deep( $raw_post, 'sanitize_text_field' ) : [];
+        $settings       = apply_filters( 'artistkit_save_settings', $settings, $sanitized_post );
 
-        update_option( 'ak_settings', $settings );
+        update_option( 'artistkit_settings', $settings );
 
         wp_safe_redirect( add_query_arg( [
             'page'    => 'artistkit-settings',
@@ -175,7 +181,7 @@ class AK_Admin {
             'ak_monthly_listeners', 'ak_total_streams',
             'ak_location', 'ak_founded_year',
         ] );
-        include AK_DIR . 'admin/views/meta-artist-identity.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-artist-identity.php';
     }
 
     public static function mb_artist_links( $post ) {
@@ -185,7 +191,7 @@ class AK_Admin {
             'ak_instagram_url', 'ak_tiktok_url', 'ak_facebook_url',
             'ak_website_url',
         ] );
-        include AK_DIR . 'admin/views/meta-artist-links.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-artist-links.php';
     }
 
     public static function mb_artist_audio( $post ) {
@@ -193,12 +199,12 @@ class AK_Admin {
             'ak_audio_mp3_url', 'ak_audio_mp3_label', 'ak_audio_downloadable',
             'ak_embed_type', 'ak_embed_url',
         ] );
-        include AK_DIR . 'admin/views/meta-audio.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-audio.php';
     }
 
     public static function mb_artist_press( $post ) {
         $quotes = get_post_meta( $post->ID, 'ak_press_quotes', true ) ?: [];
-        include AK_DIR . 'admin/views/meta-artist-press.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-artist-press.php';
     }
 
     public static function mb_artist_assets( $post ) {
@@ -206,12 +212,12 @@ class AK_Admin {
             'ak_contact_booking', 'ak_contact_management', 'ak_contact_press',
             'ak_rider_url', 'ak_photos_zip_url',
         ] );
-        include AK_DIR . 'admin/views/meta-artist-assets.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-artist-assets.php';
     }
 
     public static function mb_epk_link_artist( $post ) {
         $url = home_url( '/epk' );
-        include AK_DIR . 'admin/views/meta-epk-link.php';
+        include ARTISTKIT_DIR . 'admin/views/meta-epk-link.php';
     }
 
     // ── Save meta boxes ──────────────────────────────────────────────────────

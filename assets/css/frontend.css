@@ -336,8 +336,6 @@ body.ak-epk {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 0.8rem; color: var(--ak-muted);
 }
-.ak-footer-brand { color: var(--ak-muted2); text-decoration: none; transition: color 0.2s; }
-.ak-footer-brand:hover { color: var(--ak-accent); }
 
 /* ─── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {

@@ -281,9 +281,6 @@
 <footer class="ak-footer">
   <div class="ak-footer-inner">
     <span><?php echo esc_html( $ak_artist_name ); ?> · <?php esc_html_e( 'Press Kit', 'artistkit' ); ?></span>
-    <a href="https://promotracker.fr/artistkit" target="_blank" class="ak-footer-brand">
-      Powered by ArtistKit
-    </a>
   </div>
 </footer>
 

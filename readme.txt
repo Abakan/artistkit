@@ -1,10 +1,10 @@
 === ArtistKit ===
-Contributors: hexagonwebfr
+Contributors: hexagonwebfr, promotrackerplugins
 Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,7 +72,7 @@ Yes. The free version supports a custom accent color. The Pro version offers 5 t
 
 = Do I need any external service or account? =
 
-No. ArtistKit works entirely on your WordPress site. No external accounts, no API keys, no monthly subscription.
+ArtistKit works entirely on your WordPress site — no external accounts, no API keys, no monthly subscription. The only external request is to Google Fonts, used to load the EPK display font. See the "External services" section below for details.
 
 = Where is my data stored? =
 
@@ -86,6 +86,17 @@ Yes. ArtistKit Pro is a separate add-on plugin with advanced features for active
 
 Deactivate from the WordPress Plugins screen, then click "Delete". All artist EPK data will be removed.
 
+== External services ==
+
+This plugin loads web fonts from Google Fonts to render the typography on your public EPK page.
+
+When a visitor opens an EPK page, the plugin enqueues a stylesheet from `fonts.googleapis.com` and the browser then downloads the font files from `fonts.gstatic.com`. As part of these requests, the visitor's browser sends information such as their IP address and user-agent to Google. The request is made on every public EPK page view. No EPK content or personal data managed by the plugin is sent to Google.
+
+This service is provided by Google. Please review Google's terms and privacy policy:
+
+* Terms of Service: https://policies.google.com/terms
+* Privacy Policy: https://policies.google.com/privacy
+
 == Screenshots ==
 
 1. The Artist EPK page on the frontend
@@ -94,6 +105,13 @@ Deactivate from the WordPress Plugins screen, then click "Delete". All artist EP
 4. Mobile view of an EPK page
 
 == Changelog ==
+
+= 2.0.4 =
+* Compliance: address WordPress.org plugin review feedback.
+  - Sanitize `$_POST` (unslash + `map_deep` / `sanitize_text_field`) before exposing it to the `artistkit_save_settings` filter.
+  - Prefix global declarations: constants `AK_*` → `ARTISTKIT_*`, global functions `ak_*` → `artistkit_*`, and stored options `ak_*` → `artistkit_*`.
+  - Remove the public "Powered by ArtistKit" credit from the EPK footer (no longer displayed on visitor-facing pages).
+  - Document the use of Google Fonts as an external service in the readme (with terms and privacy links).
 
 = 2.0.3 =
 * Fix: Artist cover artwork now displays full-width on mobile devices (≤ 768px) for better visual impact.
