@@ -10,7 +10,7 @@
   <meta property="og:image" content="<?php echo esc_attr( $ak_cover_image ); ?>" />
   <meta name="robots" content="noindex" />
   <?php
-  // wp_head() prints the assets enqueued in AK_Frontend::enqueue_frontend_assets().
+  // wp_head() prints the assets enqueued in ArtistKit_Frontend::enqueue_frontend_assets().
   // It also fires the standard wp_head action — keep ahead of plugin head hooks.
   wp_head();
   do_action( 'artistkit_head', $ak_post );

@@ -4,7 +4,7 @@ Tags: epk, musician, music, press kit, artist
 Requires at least: 5.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.0.4
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,17 @@ This service is provided by Google. Please review Google's terms and privacy pol
 4. Mobile view of an EPK page
 
 == Changelog ==
+
+= 2.0.6 =
+* Compliance: address manual review feedback on generic naming.
+  - Rename classes AK_Admin/AK_Frontend/AK_Post_Types to ArtistKit_Admin/ArtistKit_Frontend/ArtistKit_Post_Types.
+  - Rename the custom post type `ak_artist_epk` to `artistkit_epk`.
+  - Rename the localized JS object `AK` to `ArtistKitData`, the `ak-admin` asset handles to `artistkit-admin`, and the settings/meta nonces and actions to the `artistkit_` prefix.
+
+= 2.0.5 =
+* Plugin Check: resolve the two remaining functional warnings.
+  - Unslash `$_POST['ak_press_quotes']` up-front; each sub-field (quote/source/url) is sanitized individually in the loop, with a documented `phpcs:ignore` explaining the deep sanitization.
+  - Add a resource version to the Google Fonts `wp_enqueue_style()` call for proper cache-busting.
 
 = 2.0.4 =
 * Compliance: address WordPress.org plugin review feedback.

@@ -31,8 +31,8 @@
 
       if ( ! mediaFrame ) {
         mediaFrame = wp.media({
-          title: AK.strings.selectImage,
-          button: { text: AK.strings.useImage },
+          title: ArtistKitData.strings.selectImage,
+          button: { text: ArtistKitData.strings.useImage },
           multiple: false,
         });
 
@@ -65,8 +65,8 @@
       e.preventDefault();
       if (logoFrame) { logoFrame.open(); return; }
       logoFrame = wp.media({
-        title: AK.strings.selectImage,
-        button: { text: AK.strings.useImage },
+        title: ArtistKitData.strings.selectImage,
+        button: { text: ArtistKitData.strings.useImage },
         multiple: false,
         library: { type: 'image' },
       });

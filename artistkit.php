@@ -3,7 +3,7 @@
  * Plugin Name:  ArtistKit
  * Plugin URI:   https://promotracker.fr/artistkit
  * Description:  Free Electronic Press Kit builder for musicians. Create your artist EPK directly on your WordPress site.
- * Version:      2.0.4
+ * Version:      2.0.6
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author:       PromoTracker
@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // ─── Constants ───────────────────────────────────────────────────────────────
-define( 'ARTISTKIT_VERSION', '2.0.4' );
+define( 'ARTISTKIT_VERSION', '2.0.6' );
 define( 'ARTISTKIT_FILE',    __FILE__ );
 define( 'ARTISTKIT_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'ARTISTKIT_URL',     plugin_dir_url( __FILE__ ) );
@@ -36,7 +36,7 @@ function artistkit_activate() {
     //
     // The CPT and custom rewrite rules are registered on `init` (priority 10),
     // which fires AFTER the activation callback. Flushing here would rebuild
-    // the rules cache without knowledge of `ak_artist_epk` and `^epk/?$`,
+    // the rules cache without knowledge of `artistkit_epk` and `^epk/?$`,
     // causing /epk URLs to 404 until the user manually saves permalinks.
     //
     // Setting a flag here and flushing on `init` priority 99 ensures the CPT
@@ -70,11 +70,11 @@ function artistkit_init_boot() {
 
     artistkit_maybe_migrate_options();
 
-    AK_Post_Types::init();
-    AK_Frontend::init();
+    ArtistKit_Post_Types::init();
+    ArtistKit_Frontend::init();
 
     if ( is_admin() ) {
-        AK_Admin::init();
+        ArtistKit_Admin::init();
     }
 
     // Flush rewrite rules once after activation, AFTER the CPT and custom

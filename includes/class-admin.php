@@ -1,20 +1,20 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-class AK_Admin {
+class ArtistKit_Admin {
 
     public static function init() {
         add_action( 'admin_menu',                  [ __CLASS__, 'register_menus' ] );
         add_action( 'admin_enqueue_scripts',       [ __CLASS__, 'enqueue_assets' ] );
         add_action( 'add_meta_boxes',              [ __CLASS__, 'register_meta_boxes' ] );
         add_action( 'save_post',                   [ __CLASS__, 'save_meta_boxes' ] );
-        add_action( 'admin_post_ak_save_settings', [ __CLASS__, 'save_settings' ] );
+        add_action( 'admin_post_artistkit_save_settings', [ __CLASS__, 'save_settings' ] );
         add_action( 'admin_notices',               [ __CLASS__, 'admin_notices' ] );
         add_filter( 'post_row_actions',            [ __CLASS__, 'add_epk_row_action' ], 10, 2 );
     }
 
     public static function add_epk_row_action( $actions, $post ) {
-        if ( $post->post_type === 'ak_artist_epk' && $post->post_status === 'publish' ) {
+        if ( $post->post_type === 'artistkit_epk' && $post->post_status === 'publish' ) {
             $actions['view_epk'] = '<a href="' . esc_url( home_url( '/epk' ) ) . '" target="_blank">' . esc_html__( 'View EPK', 'artistkit' ) . '</a>';
         }
         return $actions;
@@ -38,7 +38,7 @@ class AK_Admin {
             __( 'My Artist EPK', 'artistkit' ),
             __( 'Artist EPK', 'artistkit' ),
             'edit_posts',
-            'edit.php?post_type=ak_artist_epk'
+            'edit.php?post_type=artistkit_epk'
         );
 
         add_submenu_page(
@@ -74,7 +74,7 @@ class AK_Admin {
         $post_type = $screen ? $screen->post_type : '';
         $page      = $screen ? $screen->id : '';
 
-        $is_artistkit_screen = ( $post_type === 'ak_artist_epk' )
+        $is_artistkit_screen = ( $post_type === 'artistkit_epk' )
             || in_array( $page, [
                 'toplevel_page_artistkit',
                 'artistkit_page_artistkit-settings',
@@ -89,11 +89,11 @@ class AK_Admin {
         if ( ! $is_artistkit_screen ) return;
 
         wp_enqueue_media();
-        wp_enqueue_style( 'ak-admin', ARTISTKIT_URL . 'assets/css/admin.css', [], ARTISTKIT_VERSION );
-        wp_enqueue_script( 'ak-admin', ARTISTKIT_URL . 'assets/js/admin.js', [ 'jquery' ], ARTISTKIT_VERSION, true );
-        wp_localize_script( 'ak-admin', 'AK', [
+        wp_enqueue_style( 'artistkit-admin', ARTISTKIT_URL . 'assets/css/admin.css', [], ARTISTKIT_VERSION );
+        wp_enqueue_script( 'artistkit-admin', ARTISTKIT_URL . 'assets/js/admin.js', [ 'jquery' ], ARTISTKIT_VERSION, true );
+        wp_localize_script( 'artistkit-admin', 'ArtistKitData', [
             'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-            'nonce'   => wp_create_nonce( 'ak_admin' ),
+            'nonce'   => wp_create_nonce( 'artistkit_admin' ),
             'siteUrl' => home_url( '/epk' ),
             'strings' => [
                 'selectImage' => __( 'Select an image', 'artistkit' ),
@@ -126,7 +126,7 @@ class AK_Admin {
 
     public static function save_settings() {
         // Nonce is verified here for the whole function.
-        check_admin_referer( 'ak_save_settings' );
+        check_admin_referer( 'artistkit_save_settings_action' );
         if ( ! current_user_can( 'manage_options' ) ) {
             wp_die( esc_html__( 'Permission denied.', 'artistkit' ) );
         }
@@ -161,12 +161,12 @@ class AK_Admin {
     // ── Meta Boxes (Artist EPK only) ─────────────────────────────────────────
 
     public static function register_meta_boxes() {
-        add_meta_box( 'ak_artist_main',     __( '🎤 Artist Identity', 'artistkit' ),       [ __CLASS__, 'mb_artist_identity' ],  'ak_artist_epk', 'normal', 'high' );
-        add_meta_box( 'ak_artist_links',    __( '🎵 Streaming Links', 'artistkit' ),       [ __CLASS__, 'mb_artist_links' ],     'ak_artist_epk', 'normal', 'high' );
-        add_meta_box( 'ak_artist_audio',    __( '🔊 Audio', 'artistkit' ),                  [ __CLASS__, 'mb_artist_audio' ],     'ak_artist_epk', 'normal', 'default' );
-        add_meta_box( 'ak_artist_press',    __( '📰 Press & Quotes', 'artistkit' ),         [ __CLASS__, 'mb_artist_press' ],     'ak_artist_epk', 'normal', 'default' );
-        add_meta_box( 'ak_artist_assets',   __( '📦 Assets & Contact', 'artistkit' ),       [ __CLASS__, 'mb_artist_assets' ],    'ak_artist_epk', 'side', 'high' );
-        add_meta_box( 'ak_artist_epk_link', __( '🔗 EPK Link', 'artistkit' ),               [ __CLASS__, 'mb_epk_link_artist' ],  'ak_artist_epk', 'side', 'default' );
+        add_meta_box( 'artistkit_mb_main',     __( '🎤 Artist Identity', 'artistkit' ),       [ __CLASS__, 'mb_artist_identity' ],  'artistkit_epk', 'normal', 'high' );
+        add_meta_box( 'artistkit_mb_links',    __( '🎵 Streaming Links', 'artistkit' ),       [ __CLASS__, 'mb_artist_links' ],     'artistkit_epk', 'normal', 'high' );
+        add_meta_box( 'artistkit_mb_audio',    __( '🔊 Audio', 'artistkit' ),                  [ __CLASS__, 'mb_artist_audio' ],     'artistkit_epk', 'normal', 'default' );
+        add_meta_box( 'artistkit_mb_press',    __( '📰 Press & Quotes', 'artistkit' ),         [ __CLASS__, 'mb_artist_press' ],     'artistkit_epk', 'normal', 'default' );
+        add_meta_box( 'artistkit_mb_assets',   __( '📦 Assets & Contact', 'artistkit' ),       [ __CLASS__, 'mb_artist_assets' ],    'artistkit_epk', 'side', 'high' );
+        add_meta_box( 'artistkit_mb_epk_link', __( '🔗 EPK Link', 'artistkit' ),               [ __CLASS__, 'mb_epk_link_artist' ],  'artistkit_epk', 'side', 'default' );
 
         /**
          * Extension hook — Pro registers its Release meta-boxes here.
@@ -175,7 +175,7 @@ class AK_Admin {
     }
 
     public static function mb_artist_identity( $post ) {
-        wp_nonce_field( 'ak_save_meta', 'ak_meta_nonce' );
+        wp_nonce_field( 'artistkit_save_meta', 'artistkit_meta_nonce' );
         $d = self::get_post_meta_all( $post->ID, [
             'ak_genre', 'ak_bio_short', 'ak_bio_long',
             'ak_monthly_listeners', 'ak_total_streams',
@@ -224,14 +224,14 @@ class AK_Admin {
 
     public static function save_meta_boxes( $post_id ) {
         // Nonce is verified at function entry — all $_POST accesses below are guarded.
-        if ( ! isset( $_POST['ak_meta_nonce'] ) ) return;
-        if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ak_meta_nonce'] ) ), 'ak_save_meta' ) ) return;
+        if ( ! isset( $_POST['artistkit_meta_nonce'] ) ) return;
+        if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['artistkit_meta_nonce'] ) ), 'artistkit_save_meta' ) ) return;
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
         if ( ! current_user_can( 'edit_post', $post_id ) ) return;
 
         $post_type = get_post_type( $post_id );
 
-        if ( $post_type === 'ak_artist_epk' ) {
+        if ( $post_type === 'artistkit_epk' ) {
             self::save_text_fields( $post_id, [
                 'ak_genre',
                 'ak_monthly_listeners', 'ak_total_streams',
@@ -250,11 +250,16 @@ class AK_Admin {
             ] );
             update_post_meta( $post_id, 'ak_audio_downloadable', isset( $_POST['ak_audio_downloadable'] ) ? '1' : '0' );
 
-            // Press quotes (array)
-            if ( isset( $_POST['ak_press_quotes'] ) && is_array( $_POST['ak_press_quotes'] ) ) {
+            // Press quotes (array). Unslash up-front; each sub-field is
+            // sanitized individually below (quote/source/url).
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce checked at function entry; each sub-field (quote/source/url) is sanitized individually in the loop below.
+            $ak_raw_quotes = isset( $_POST['ak_press_quotes'] ) ? wp_unslash( $_POST['ak_press_quotes'] ) : [];
+            if ( is_array( $ak_raw_quotes ) ) {
                 $ak_quotes = [];
-                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked at function entry
-                foreach ( wp_unslash( $_POST['ak_press_quotes'] ) as $ak_q ) {
+                foreach ( $ak_raw_quotes as $ak_q ) {
+                    if ( ! is_array( $ak_q ) ) {
+                        continue;
+                    }
                     $ak_quotes[] = [
                         'quote'  => sanitize_textarea_field( $ak_q['quote'] ?? '' ),
                         'source' => sanitize_text_field( $ak_q['source'] ?? '' ),
@@ -303,7 +308,7 @@ class AK_Admin {
     }
 
     public static function get_artist_epk() {
-        $posts = get_posts( [ 'post_type' => 'ak_artist_epk', 'posts_per_page' => 1, 'post_status' => 'any' ] );
+        $posts = get_posts( [ 'post_type' => 'artistkit_epk', 'posts_per_page' => 1, 'post_status' => 'any' ] );
         return $posts ? $posts[0] : null;
     }
 

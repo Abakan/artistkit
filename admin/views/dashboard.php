@@ -30,7 +30,7 @@
           <?php esc_html_e( 'Not created yet', 'artistkit' ); ?>
         </div>
         <div class="ak-card-actions">
-          <a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=ak_artist_epk' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Create my Artist EPK', 'artistkit' ); ?></a>
+          <a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=artistkit_epk' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Create my Artist EPK', 'artistkit' ); ?></a>
         </div>
       <?php endif; ?>
     </div>

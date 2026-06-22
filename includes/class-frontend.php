@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-class AK_Frontend {
+class ArtistKit_Frontend {
 
     public static function init() {
         add_action( 'template_redirect', [ __CLASS__, 'handle_epk_request' ] );
@@ -26,7 +26,7 @@ class AK_Frontend {
 
     public static function render_artist_epk() {
         $posts = get_posts( [
-            'post_type'      => 'ak_artist_epk',
+            'post_type'      => 'artistkit_epk',
             'posts_per_page' => 1,
             'post_status'    => 'publish',
         ] );
@@ -76,20 +76,20 @@ class AK_Frontend {
         ] );
         $ak_ff = $ak_font_families[ $ak_font ] ?? $ak_font_families['inter'];
 
-        // Google Fonts stylesheet — registered without version so the CDN serves the canonical URL.
+        // Google Fonts stylesheet — versioned with the plugin version for cache-busting on updates.
         if ( isset( $ak_font_urls[ $ak_font ] ) ) {
-            wp_enqueue_style( 'ak-google-fonts', $ak_font_urls[ $ak_font ], [], null );
+            wp_enqueue_style( 'ak-google-fonts', $ak_font_urls[ $ak_font ], [], ARTISTKIT_VERSION );
         }
 
         // Base frontend CSS
-        wp_enqueue_style( 'ak-frontend', AK_URL . 'assets/css/frontend.css', [], AK_VERSION );
+        wp_enqueue_style( 'ak-frontend', ARTISTKIT_URL . 'assets/css/frontend.css', [], ARTISTKIT_VERSION );
 
         // Per-template theme CSS (dark-minimal in Free; Pro registers more via the URL filter)
         wp_enqueue_style(
             'ak-theme',
-            AK_URL . 'assets/css/theme-' . sanitize_file_name( $ak_theme ) . '.css',
+            ARTISTKIT_URL . 'assets/css/theme-' . sanitize_file_name( $ak_theme ) . '.css',
             [ 'ak-frontend' ],
-            AK_VERSION
+            ARTISTKIT_VERSION
         );
 
         // Dynamic CSS variables — accent color + chosen font family.
@@ -121,11 +121,11 @@ class AK_Frontend {
         );
 
         // Frontend JS (footer)
-        wp_enqueue_script( 'ak-frontend', AK_URL . 'assets/js/frontend.js', [], AK_VERSION, true );
+        wp_enqueue_script( 'ak-frontend', ARTISTKIT_URL . 'assets/js/frontend.js', [], ARTISTKIT_VERSION, true );
     }
 
     public static function render_template( $template, $data ) {
-        $ak_settings = $data['settings'] ?? get_option( 'ak_settings', [] );
+        $ak_settings = $data['settings'] ?? get_option( 'artistkit_settings', [] );
 
         status_header( 200 );
         nocache_headers();
@@ -172,7 +172,7 @@ class AK_Frontend {
         $ak_embed_url          = $data['embed_url']          ?? '';
         $ak_embed_height       = $data['embed_height']       ?? '152';
         $ak_theme              = $ak_settings['template']    ?? 'dark-minimal';
-        include AK_DIR . 'templates/' . $template . '.php';
+        include ARTISTKIT_DIR . 'templates/' . $template . '.php';
         $ak_content = ob_get_clean();
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- full standalone HTML page, components escaped at source
@@ -218,7 +218,7 @@ class AK_Frontend {
             'embed_type'        => get_post_meta( $id, 'ak_embed_type', true ),
             'embed_url'         => get_post_meta( $id, 'ak_embed_url', true ),
             'embed_height'      => '152',
-            'settings'          => get_option( 'ak_settings', [] ),
+            'settings'          => get_option( 'artistkit_settings', [] ),
             'site_name'         => get_bloginfo( 'name' ),
             'site_logo'         => self::get_site_logo(),
         ];
@@ -233,7 +233,7 @@ class AK_Frontend {
 
     public static function get_site_logo() {
         // Priority 1: logo uploaded in ArtistKit settings
-        $settings = get_option( 'ak_settings', [] );
+        $settings = get_option( 'artistkit_settings', [] );
         if ( ! empty( $settings['logo_url'] ) ) {
             return $settings['logo_url'];
         }
@@ -248,7 +248,7 @@ class AK_Frontend {
 
     public static function render_404( $message = '' ) {
         status_header( 404 );
-        $template_404 = AK_DIR . 'templates/404.php';
+        $template_404 = ARTISTKIT_DIR . 'templates/404.php';
         if ( file_exists( $template_404 ) ) {
             include $template_404;
         } else {

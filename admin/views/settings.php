@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-$ak_settings = get_option( 'ak_settings', [] );
+$ak_settings = get_option( 'artistkit_settings', [] );
 
 /**
  * Filter — Pro extends the template list with its premium templates.
@@ -34,8 +34,8 @@ $ak_fonts = apply_filters( 'artistkit_settings_fonts', [
     <div class="ak-card">
       <h2 class="ak-section-title">🎨 <?php esc_html_e( 'EPK Design', 'artistkit' ); ?></h2>
       <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-        <?php wp_nonce_field( 'ak_save_settings' ); ?>
-        <input type="hidden" name="action" value="ak_save_settings" />
+        <?php wp_nonce_field( 'artistkit_save_settings_action' ); ?>
+        <input type="hidden" name="action" value="artistkit_save_settings" />
 
         <!-- Logo -->
         <div class="ak-field-group">

@@ -10,13 +10,13 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // Delete plugin options
-delete_option( 'ak_settings' );
-delete_option( 'ak_version' );
-delete_option( 'ak_needs_rewrite_flush' );
+delete_option( 'artistkit_settings' );
+delete_option( 'artistkit_version' );
+delete_option( 'artistkit_needs_rewrite_flush' );
 
 // Delete Artist EPK CPT data
 $ak_artists = get_posts( [
-    'post_type'   => 'ak_artist_epk',
+    'post_type'   => 'artistkit_epk',
     'numberposts' => -1,
     'post_status' => 'any',
     'fields'      => 'ids',

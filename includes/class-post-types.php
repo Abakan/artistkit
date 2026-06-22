@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-class AK_Post_Types {
+class ArtistKit_Post_Types {
 
     public static function init() {
         add_action( 'init', [ __CLASS__, 'register' ] );
@@ -10,7 +10,7 @@ class AK_Post_Types {
     }
 
     public static function register() {
-        register_post_type( 'ak_artist_epk', [
+        register_post_type( 'artistkit_epk', [
             'labels' => [
                 'name'               => __( 'Artist EPK', 'artistkit' ),
                 'singular_name'      => __( 'Artist EPK', 'artistkit' ),
